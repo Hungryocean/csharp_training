@@ -7,7 +7,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
-using WebaddressbookTests;
 
 namespace WebaddressbookTests
 {
@@ -17,14 +16,20 @@ namespace WebaddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            OpenHomePage();
-            Login(new AccountData("admin", "secret"));
-            InitContactCreation();
             ContactData contact = new ContactData("AAA");
             contact.Lastname = "BBB";
-            FillContactForm(contact);
-            SubmitContactCreation();
-            ReturnToHomePage();
+
+            app.Contacts.Create(contact);
+        }
+
+        [Test]
+        public void EmptyContactCreationTest()
+        {
+
+            ContactData contact = new ContactData("");
+            contact.Lastname = "";
+
+            app.Contacts.Create(contact);
         }
     }
 }
