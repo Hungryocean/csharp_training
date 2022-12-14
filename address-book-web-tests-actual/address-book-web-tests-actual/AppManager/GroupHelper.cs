@@ -76,7 +76,7 @@ namespace WebaddressbookTests
         }
         public GroupHelper RemoveGroup()
         {
-            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            driver.FindElement(By.XPath("//div[@id='content']/form/input[5]")).Click();
             return this;
         }
         public GroupHelper SelectGroup(int index)
