@@ -11,7 +11,7 @@ using OpenQA.Selenium.Support.UI;
 namespace WebaddressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests : TestBase
+    public class GroupCreationTests : AuthTestBase
     {
 
         [Test]
