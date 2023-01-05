@@ -13,7 +13,7 @@ namespace WebaddressbookTests
         public void ContactModificationTest()
         {
             ContactData newData = new ContactData("Aaa");
-            newData.Lastname = "Bbb";
+            newData.Lastname = null;
 
 
             app.Contacts.Modify(1, newData);
