@@ -78,6 +78,7 @@
     <Compile Include="Tests\GroupRemovalTests.cs" />
     <Compile Include="Tests\ContactRemovalTests.cs" />
     <Compile Include="Tests\ContactModificationTests.cs" />
+    <Compile Include="Tests\TestSuiteFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
