@@ -4,6 +4,7 @@ using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,6 +31,8 @@ namespace WebaddressbookTests
         public GroupHelper Modify(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
+            GroupData oldGroup = new GroupData("aaa");
+            CreateGroupIfNotAny(oldGroup);
             SelectGroup(p);
             InitGroupModification();
             FillGroupForm(newData);
@@ -41,6 +44,8 @@ namespace WebaddressbookTests
         public GroupHelper Remove(int p)
         {
             manager.Navigator.GoToGroupsPage();
+            GroupData oldGroup = new GroupData("aaa");
+            CreateGroupIfNotAny(oldGroup);
             SelectGroup(p);
             RemoveGroup();
             ReturnToGroupsPage();
@@ -89,7 +94,21 @@ namespace WebaddressbookTests
             driver.FindElement(By.Name("edit")).Click();
             return this;
         }
+        public void CreateGroupIfNotAny(GroupData oldGroup)
+        {
+            if (IsGroupCreated())
+            {
+            }
+            else
+            {
+                Create(oldGroup);
+            }
+        }
 
+        public bool IsGroupCreated()
+        {
+            return IsElementPresent(By.XPath("(//input[@name='selected[]'])"));
+        }
 
     }
 }

@@ -17,6 +17,7 @@ namespace WebaddressbookTests
         }
         public ContactHelper Create(ContactData contact)
         {
+           manager.Navigator.OpenHomePage();
            InitContactCreation();
            FillContactForm(contact);
            SubmitContactCreation();
@@ -25,6 +26,9 @@ namespace WebaddressbookTests
         }
         public ContactHelper Modify(int p, ContactData newData)
         {
+            manager.Navigator.OpenHomePage();
+            ContactData oldContact = new ContactData("bbb");
+            CreateContactIfNotAny(oldContact);
             SelectContact(p);
             InitContactModification();
             FillContactForm(newData);
@@ -33,6 +37,9 @@ namespace WebaddressbookTests
         }
         public ContactHelper Remove(int p)
         {
+            manager.Navigator.OpenHomePage();
+            ContactData oldContact = new ContactData("bbb");
+            CreateContactIfNotAny(oldContact);
             SelectContact(p);
             RemoveContact();
             ApproveContactRemoval();
@@ -84,6 +91,21 @@ namespace WebaddressbookTests
         {
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
             return this;
+        }
+        public void CreateContactIfNotAny(ContactData oldContact)
+        {
+            if (IsContactCreated())
+            {
+            }
+            else
+            {
+                Create(oldContact);
+            }
+        }
+
+        public bool IsContactCreated()
+        {
+            return IsElementPresent(By.XPath("(//input[@name='selected[]'])"));
         }
 
     }
