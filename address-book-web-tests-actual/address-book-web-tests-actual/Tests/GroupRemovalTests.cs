@@ -28,6 +28,11 @@ namespace WebaddressbookTests
             oldGroups.RemoveAt(0);
             Assert.AreEqual(oldGroups, newGroups);
 
+            foreach (GroupData group in newGroups) 
+            {
+                Assert.AreNotEqual(group.Id, oldGroups[0]);
+            }
+
 
         }
 
