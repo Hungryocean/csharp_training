@@ -33,6 +33,7 @@ namespace WebaddressbookTests
             InitContactModification();
             FillContactForm(newData);
             SubmitContactModification();
+            manager.Navigator.OpenHomePage();
             return this;
         }
         public ContactHelper Remove(int p)
@@ -43,6 +44,7 @@ namespace WebaddressbookTests
             SelectContact(p);
             RemoveContact();
             ApproveContactRemoval();
+            manager.Navigator.OpenHomePage();
             return this;
         }
 
@@ -112,6 +114,8 @@ namespace WebaddressbookTests
         }
 
         private List<ContactData> contactCache = null;
+
+        public string Id { get; private set; }
         public List<ContactData> GetContactList()
         {
             if (contactCache == null)
@@ -121,7 +125,10 @@ namespace WebaddressbookTests
                 ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
                 foreach (IWebElement element in elements)
                 {
-                    contactCache.Add(new ContactData(element.Text));
+                    contactCache.Add(new ContactData(element.Text)
+                    {
+                        Id = element.FindElement(By.TagName("input")).GetAttribute("value")
+                    });
                 }
             }
             return new List<ContactData>(contactCache); 
