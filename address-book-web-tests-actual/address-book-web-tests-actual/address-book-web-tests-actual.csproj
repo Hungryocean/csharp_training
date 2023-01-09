@@ -50,14 +50,17 @@
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Selenium.WebDriverBackedSelenium, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriverBackedSelenium.3.141.0\lib\net45\Selenium.WebDriverBackedSelenium.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="WebDriver, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.4.7.0\lib\net48\WebDriver.dll</HintPath>
     </Reference>
-    <Reference Include="WebDriver.Support, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.Support.4.7.0\lib\net48\WebDriver.Support.dll</HintPath>
+    <Reference Include="WebDriver.Support, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.3.141.0\lib\net45\WebDriver.Support.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -96,7 +99,9 @@
     <Error Condition="!Exists('..\packages\Selenium.WebDriver.4.7.0\build\Selenium.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.4.7.0\build\Selenium.WebDriver.targets'))" />
     <Error Condition="!Exists('..\packages\NUnit3TestAdapter.4.3.1\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.4.3.1\build\net35\NUnit3TestAdapter.props'))" />
     <Error Condition="!Exists('..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props'))" />
+    <Error Condition="!Exists('..\packages\Selenium.WebDriver.IEDriver.3.141.0\build\Selenium.WebDriver.IEDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.IEDriver.3.141.0\build\Selenium.WebDriver.IEDriver.targets'))" />
   </Target>
   <Import Project="..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.targets')" />
   <Import Project="..\packages\Selenium.WebDriver.4.7.0\build\Selenium.WebDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.4.7.0\build\Selenium.WebDriver.targets')" />
+  <Import Project="..\packages\Selenium.WebDriver.IEDriver.3.141.0\build\Selenium.WebDriver.IEDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.IEDriver.3.141.0\build\Selenium.WebDriver.IEDriver.targets')" />
 </Project>

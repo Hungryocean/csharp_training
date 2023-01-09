@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -17,6 +18,9 @@ namespace WebaddressbookTests
         [Test]
         public void GroupRemovalTest()
         {
+            GroupData oldGroup = new GroupData("aaa");
+            app.Groups.CreateGroupIfNotAny(oldGroup);
+
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
             app.Groups.Remove(0);

@@ -17,6 +17,9 @@ namespace WebaddressbookTests
             newData.Header = null;
             newData.Footer = null;
 
+            GroupData oldGroup = new GroupData("aaa");
+            app.Groups.CreateGroupIfNotAny(oldGroup);
+
             List<GroupData> oldGroups = app.Groups.GetGroupList();
             GroupData oldData = oldGroups[0];
 

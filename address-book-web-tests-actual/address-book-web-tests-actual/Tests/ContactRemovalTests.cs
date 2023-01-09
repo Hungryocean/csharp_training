@@ -18,6 +18,9 @@ namespace WebaddressbookTests
         [Test]
         public void ContactRemovalTest()
         {
+            ContactData oldContact = new ContactData("bbb", "aaa");
+            app.Contacts.CreateContactIfNotAny(oldContact);
+
             List<ContactData> oldContacts = app.Contacts.GetContactList();
 
             app.Contacts.Remove(0);

@@ -27,8 +27,6 @@ namespace WebaddressbookTests
         public ContactHelper Modify(int p, ContactData newData)
         {
             manager.Navigator.OpenHomePage();
-            ContactData oldContact = new ContactData("bbb", "aaa");
-            CreateContactIfNotAny(oldContact);
             SelectContact(p);
             InitContactModification(0);
             FillContactForm(newData);
@@ -39,8 +37,6 @@ namespace WebaddressbookTests
         public ContactHelper Remove(int p)
         {
             manager.Navigator.OpenHomePage();
-            ContactData oldContact = new ContactData("bbb", "aaa");
-            CreateContactIfNotAny(oldContact);
             SelectContact(p);
             RemoveContact();
             ApproveContactRemoval();
@@ -94,7 +90,7 @@ namespace WebaddressbookTests
         }
         public void InitContactModification(int index)
         {
-            driver.FindElement(By.Name("entry"))[index]
+            driver.FindElements(By.Name("entry"))[index]
                 .FindElements(By.TagName("td"))[7]
                 .FindElement(By.TagName("a")).Click();
 ;
@@ -125,6 +121,7 @@ namespace WebaddressbookTests
                 contactCache = new List<ContactData>();
                 manager.Navigator.OpenHomePage();
                 ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+                IList<IWebElement> cells = driver.FindElements(By.TagName("td"));
                 foreach (IWebElement element in elements)
                 {
                     contactCache.Add(new ContactData(element.Text)
@@ -143,7 +140,7 @@ namespace WebaddressbookTests
         public ContactData GetContactInformationFromTable(int index)
         {
             manager.Navigator.OpenHomePage();
-            IList<IWebElement> cells = driver.FindElement(By.Name("entry"))[index].FindElements(By.TagName("td"));
+            IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index].FindElements(By.TagName("td"));
             string lastname = cells[1].Text;
             string firstname = cells[2].Text;
             string address = cells[3].Text;

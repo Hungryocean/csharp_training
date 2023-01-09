@@ -14,6 +14,9 @@ namespace WebaddressbookTests
         [Test]
         public void ContactModificationTest()
         {
+            ContactData oldContact = new ContactData("bbb", "aaa");
+            app.Contacts.CreateContactIfNotAny(oldContact);
+
             ContactData newData = new ContactData("B");
             newData.Lastname = "B";
 
