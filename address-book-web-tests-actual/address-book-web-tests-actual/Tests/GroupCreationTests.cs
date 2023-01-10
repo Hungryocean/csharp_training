@@ -55,6 +55,7 @@ namespace WebaddressbookTests
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
         }
+
         [Test]
         public void BadNameGroupCreationTest()
         {
@@ -74,5 +75,6 @@ namespace WebaddressbookTests
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
         }
+
     }
 }

@@ -1,11 +1,10 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 
 namespace WebaddressbookTests
@@ -122,12 +121,28 @@ namespace WebaddressbookTests
                 manager.Navigator.OpenHomePage();
                 ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
                 IList<IWebElement> cells = driver.FindElements(By.TagName("td"));
+                string lastname = cells[1].Text;
+                string firstname = cells[2].Text;
                 foreach (IWebElement element in elements)
                 {
-                    contactCache.Add(new ContactData(element.Text)
+                    contactCache.Add(new ContactData(null)
                     {
                         Id = element.FindElement(By.TagName("input")).GetAttribute("value")
                     });
+                }
+                string allContactNames = driver.FindElement(By.CssSelector("div#content form")).Text;
+                string[] parts = allContactNames.Split('\n');
+                int shift = contactCache.Count - parts.Length;
+                for (int i = 0; i < contactCache.Count; i++)
+                {
+                    if (i < shift)
+                    {
+                        contactCache[i].Lastname = "";
+                    }
+                    else
+                    {
+                        contactCache[i].Lastname = parts[i - shift].Trim();
+                    }
                 }
             }
             return new List<ContactData>(contactCache); 
@@ -174,7 +189,14 @@ namespace WebaddressbookTests
                 WorkPhone = workPhone
             };
 
-
+        }
+        public int GetNumberOfSearchResults()
+        {
+            manager.Navigator.OpenHomePage();
+            string text = driver.FindElement(By.TagName("label")).Text;
+            Match m = new Regex(@"\d+").Match(text);
+            return Int32.Parse(m.Value);
+            
         }
     }
 }

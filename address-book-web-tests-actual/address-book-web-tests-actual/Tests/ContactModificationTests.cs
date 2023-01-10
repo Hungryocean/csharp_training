@@ -17,8 +17,7 @@ namespace WebaddressbookTests
             ContactData oldContact = new ContactData("bbb", "aaa");
             app.Contacts.CreateContactIfNotAny(oldContact);
 
-            ContactData newData = new ContactData("B");
-            newData.Lastname = "B";
+            ContactData newData = new ContactData("B", "F");
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
             ContactData oldData = oldContacts[0];
