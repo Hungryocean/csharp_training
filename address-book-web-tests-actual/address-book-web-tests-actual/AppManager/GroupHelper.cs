@@ -96,6 +96,10 @@ namespace WebaddressbookTests
         { 
             
             if (IsGroupCreated())
+            {
+
+            }
+            else
             {   
                 Create(oldGroup);
             }
