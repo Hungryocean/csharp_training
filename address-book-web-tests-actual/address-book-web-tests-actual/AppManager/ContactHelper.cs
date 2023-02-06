@@ -112,41 +112,40 @@ namespace WebaddressbookTests
 
         private List<ContactData> contactCache = null;
 
-        public string Id { get; private set; }
         public List<ContactData> GetContactList()
         {
             if (contactCache == null)
             {
                 contactCache = new List<ContactData>();
                 manager.Navigator.OpenHomePage();
-                ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
-                IList<IWebElement> cells = driver.FindElements(By.TagName("td"));
-                string lastname = cells[1].Text;
-                string firstname = cells[2].Text;
+                IList<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name=\"entry\"]"));
+                string firstname;
+                string lastname;
                 foreach (IWebElement element in elements)
                 {
-                    contactCache.Add(new ContactData(null)
-                    {
-                        Id = element.FindElement(By.TagName("input")).GetAttribute("value")
-                    });
-                }
-                string allContactNames = driver.FindElement(By.CssSelector("div#content form")).Text;
-                string[] parts = allContactNames.Split('\n');
-                int shift = contactCache.Count - parts.Length;
-                for (int i = 0; i < contactCache.Count; i++)
-                {
-                    if (i < shift)
-                    {
-                        contactCache[i].Lastname = "";
-                    }
-                    else
-                    {
-                        contactCache[i].Lastname = parts[i - shift].Trim();
-                    }
+                    IList<IWebElement> cells = element.FindElements(By.CssSelector("td"));
+                    lastname = cells[2].Text;
+                    firstname = cells[1].Text;
+                    contactCache.Add(new ContactData(lastname, firstname));
                 }
             }
-            return new List<ContactData>(contactCache); 
+            //string allContactNames = driver.FindElement(By.CssSelector("div#content form")).Text;
+            //    string[] parts = allContactNames.Split('\n');
+            //    int shift = contactCache.Count - parts.Length;
+            //    for (int i = 0; i < contactCache.Count; i++)
+            //    {
+            //        if (i < shift)
+            //        {
+            //            contactCache[i].Lastname = "";
+            //        }
+            //        else
+            //        {
+            //            contactCache[i].Lastname = parts[i - shift].Trim();
+            //        }
+            //    }
+            return new List<ContactData>(contactCache);
         }
+
         public int GetContactCount()
         {
             return driver.FindElements(By.Name("entry")).Count;

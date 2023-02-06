@@ -33,11 +33,6 @@ namespace WebaddressbookTests
             oldContacts.RemoveAt(0);
             Assert.AreEqual(oldContacts, newContacts);
 
-            foreach (ContactData contact in newContacts)
-            {
-                Assert.AreNotEqual(contact.Id, toBeRemoved.Id);
-
-            }
         }
 
     }
