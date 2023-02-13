@@ -208,6 +208,19 @@ namespace WebaddressbookTests
             };
 
         }
+        public ContactData GetContactInformationDetails(int d)
+        {
+
+            manager.Navigator.OpenHomePage();
+            driver.FindElements(By.Name("entry"))[d]
+                .FindElements(By.TagName("td"))[6]
+                .FindElement(By.TagName("a")).Click();
+            string allDetails = driver.FindElement(By.Id("content")).Text;
+            return new ContactData("", "")
+            {
+                AllDetails = allDetails
+            };
+        }
         public int GetNumberOfSearchResults()
         {
             manager.Navigator.OpenHomePage();
@@ -216,5 +229,7 @@ namespace WebaddressbookTests
             return Int32.Parse(m.Value);
             
         }
+
+
     }
 }
