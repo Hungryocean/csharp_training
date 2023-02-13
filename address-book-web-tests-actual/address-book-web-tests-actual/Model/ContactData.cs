@@ -13,6 +13,9 @@ namespace WebaddressbookTests
 
         private string allPhones;
 
+        private string allEmails;
+
+
         public ContactData(string firstname, string lastname)
         {
             Firstname = firstname;
@@ -68,6 +71,10 @@ namespace WebaddressbookTests
 
         public string Firstname { get; set; }
         public string Lastname { get; set; }
+        public string Middlename { get; set; }
+        public string Nickname { get; set; }
+        public string Title { get; set; }
+        public string Company { get; set; }
         public string Id { get; set; }
         public string Address { get; set; }
         public string HomePhone { get; set; }
@@ -91,6 +98,33 @@ namespace WebaddressbookTests
                 allPhones = value;
             }
         }
+        public string Fax { get; set; }
+        public string Email { get; set; }
+        public string Email2 { get; set; }
+        public string Email3 { get; set; }
+
+        public string AllEmails
+        {
+            get
+            {
+                if (allEmails != null)
+                {
+                    return allEmails;
+                }
+                else
+                {
+                    return CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3).Trim();
+                }
+            }
+            set
+            {
+                allEmails = value;
+            }
+        }
+
+        public string Homepage { get; set; }
+        public string Notes { get; set; }
+
         public string CleanUp(string phone)
         {
             if (phone == null || phone == "")
