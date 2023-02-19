@@ -93,7 +93,35 @@ namespace WebaddressbookTests
                 }
                 else
                 {
-                    return CleanUpPhone(HomePhone) + CleanUpPhone(MobilePhone) + CleanUpPhone(WorkPhone).Trim();
+                    string bufer = "";
+
+                    if (HomePhone != null && HomePhone != "")
+                    {
+                        bufer = bufer + CleanUpPhone(HomePhone);
+                    }
+                    if (MobilePhone != null && MobilePhone != "")
+                    {
+                        if (bufer != "")
+                        {
+                            bufer = bufer + "\r\n" + CleanUpPhone(MobilePhone);
+                        }
+                        else
+                        {
+                            bufer = bufer + CleanUpPhone(MobilePhone);
+                        }
+                    }
+                    if (WorkPhone != null && WorkPhone != "")
+                    {
+                        if (bufer != "")
+                        {
+                            bufer = bufer + "\r\n" + CleanUpPhone(WorkPhone);
+                        }
+                        else
+                        {
+                            bufer = bufer + CleanUpPhone(WorkPhone);
+                        }
+                    }
+                    return bufer;
                 }
             }
             set
@@ -117,7 +145,35 @@ namespace WebaddressbookTests
                 }
                 else
                 {
-                    return CleanUpEmail(Email) + CleanUpEmail(Email2) + CleanUpEmail(Email3).Trim();
+                    string bufer = "";
+
+                    if (Email != null && Email != "")
+                    {
+                        bufer = bufer + Email;
+                    }
+                    if (Email2 != null && Email2 != "")
+                    {
+                        if (bufer != "")
+                        {
+                            bufer = bufer + "\r\n" + Email2;
+                        }
+                        else
+                        {
+                            bufer = bufer + Email2;
+                        }
+                    }
+                    if (Email3 != null && Email3 != "")
+                    {
+                        if (bufer != "")
+                        {
+                            bufer = bufer + "\r\n" + Email3;
+                        }
+                        else
+                        {
+                            bufer = bufer + Email3;
+                        }
+                    }
+                    return bufer; ;
                 }
             }
             set
@@ -158,16 +214,9 @@ namespace WebaddressbookTests
             {
                 return "";
             }
-            return Regex.Replace(phone, "[-()]", "") + "\r\n";
+            return Regex.Replace(phone, "[-()]", "");
         }
-        private string CleanUpEmail(string email)
-        {
-            if (email == null || email == "")
-            {
-                return "";
-            }
-            return Regex.Replace(email, "[-()]", "") + "\r\n";
-        }
+
         private string CleanUpAllDetails(string allDetails)
         {
             if (allDetails == null || allDetails == "")
@@ -225,15 +274,29 @@ namespace WebaddressbookTests
 
             if (email != null && email != "")
             {
-                bufer = bufer + email + "\r\n";
+                bufer = bufer + "\r\n" + email;
             }
             if (email2 != null && email2 != "")
             {
-                bufer = bufer + email2 + "\r\n";
+                if (bufer != "")
+                {
+                    bufer = bufer + "\r\n" + email2;
+                }
+                else
+                {
+                    bufer = bufer + email2;
+                }
             }
             if (email3 != null && email3 != "")
             {
-                bufer = bufer + email3 + "\r\n";
+                if (bufer != "")
+                {
+                    bufer = bufer + "\r\n" + email3;
+                }
+                else
+                {
+                    bufer = bufer + email3;
+                }
             }
             return bufer;
         }
