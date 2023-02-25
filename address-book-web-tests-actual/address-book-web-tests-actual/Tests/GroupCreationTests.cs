@@ -9,6 +9,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace WebaddressbookTests
 {
@@ -31,7 +33,7 @@ namespace WebaddressbookTests
             return groups;
         }
 
-        public static IEnumerable<GroupData> GroupDataFromFile()
+        public static IEnumerable<GroupData> GroupDataFromCsvFile()
         {
             List<GroupData> groups = new List<GroupData>();
             string[] lines = File.ReadAllLines(@"groups.csv");
@@ -47,8 +49,20 @@ namespace WebaddressbookTests
             return groups;
         }
 
+        public static IEnumerable<GroupData> GroupDataFromXmlFile()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            //privedenie tipa
+            return (List<GroupData>) 
+                //chtenie iz faila
+                new XmlSerializer(typeof(List<GroupData>))
+                .Deserialize(new StreamReader(@"groups.xml"));
 
-        [Test, TestCaseSource("GroupDataFromFile")]
+        }
+
+
+
+        [Test, TestCaseSource("GroupDataFromXmlFile")]
         public void GroupCreationTest(GroupData group)
         {
 
