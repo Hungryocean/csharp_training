@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using WebaddressbookTests;
-using WebAddressbookTests;
 
-namespace WebAddressbookTests
+
+namespace WebaddressbookTests
 {
     public class GroupTestBase : AuthTestBase
     {

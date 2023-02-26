@@ -13,7 +13,6 @@ using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Excel = Microsoft.Office.Interop.Excel;
-using WebAddressbookTests;
 
 namespace WebaddressbookTests
 {

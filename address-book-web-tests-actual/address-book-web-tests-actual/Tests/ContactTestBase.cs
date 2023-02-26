@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using WebaddressbookTests;
 
-namespace WebAddressbookTests
+namespace WebaddressbookTests
 {
     public class ContactTestBase : AuthTestBase
     {

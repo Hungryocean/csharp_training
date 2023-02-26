@@ -82,6 +82,9 @@ namespace WebaddressbookTests
         [Column(Name = "lastname"), NotNull]
         public string Lastname { get; set; }
 
+        [Column(Name = "deprecated")]
+        public string Deprecated { get; set; }
+
         [Column(Name = "middlename"), NotNull]
         public string Middlename { get; set; }
 
@@ -339,7 +342,7 @@ namespace WebaddressbookTests
         {
             using (AddressBookDB db = new AddressBookDB())
             {
-                return (from c in db.Contacts select c).ToList();
+                return (from c in db.Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select c).ToList();
             }
         }
 

@@ -8,7 +8,7 @@ using LinqToDB;
 
 using WebaddressbookTests;
 
-namespace WebAddressbookTests
+namespace WebaddressbookTests
 {
     public class AddressBookDB : LinqToDB.Data.DataConnection
     {
@@ -17,5 +17,7 @@ namespace WebAddressbookTests
         public ITable<GroupData> Groups { get { return this.GetTable<GroupData>(); } }
 
         public ITable<ContactData> Contacts { get { return this.GetTable<ContactData>(); } }
+
+        public ITable<GroupToContactRelation> GCR { get { return this.GetTable<GroupToContactRelation>(); } }
     }
 }
