@@ -23,20 +23,20 @@ namespace WebaddressbookTests
            ReturnToHomePage();
            return this;
         }
-        public ContactHelper Modify(int p, ContactData newData)
+        public ContactHelper Modify(ContactData oldData, ContactData newData)
         {
             manager.Navigator.OpenHomePage();
-            SelectContact(p);
+            SelectContact(oldData.Id);
             InitContactModification(0);
             FillContactForm(newData);
             SubmitContactModification();
             manager.Navigator.OpenHomePage();
             return this;
         }
-        public ContactHelper Remove(int p)
+        public ContactHelper Remove(ContactData contact)
         {
             manager.Navigator.OpenHomePage();
-            SelectContact(p);
+            SelectContact(contact.Id);
             RemoveContact();
             ApproveContactRemoval();
             manager.Navigator.OpenHomePage();
@@ -54,9 +54,11 @@ namespace WebaddressbookTests
             contactCache = null;
             return this;
         }
-        public ContactHelper SelectContact(int index)
+        public ContactHelper SelectContact(String id)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index + 1) + "]")).Click();
+            driver.FindElement(By.XPath("//input[@id='" + id + "']/../.."))
+                 .FindElements(By.TagName("td"))[7]
+                 .FindElement(By.TagName("a")).Click();
             return this;
         }
         public ContactHelper InitContactCreation()
