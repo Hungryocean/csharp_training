@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using LinqToDB.Mapping;
-using WebAddressbookTests;
+
 
 namespace WebaddressbookTests
 {

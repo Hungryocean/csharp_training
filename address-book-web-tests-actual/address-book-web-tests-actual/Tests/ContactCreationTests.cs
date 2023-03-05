@@ -11,7 +11,6 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using System.IO;
 using Newtonsoft.Json;
-using WebAddressbookTests;
 
 namespace WebaddressbookTests
 {

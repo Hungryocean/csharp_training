@@ -267,12 +267,13 @@ namespace WebaddressbookTests
         {
             manager.Navigator.OpenHomePage();
             SelectGroupFromFilter(group.Name);
-            SelectContact(contact.Id);
+            SelectContactId(contact.Id);
             CommitRemovingContactFromGroup();
             new WebDriverWait(driver, TimeSpan.FromSeconds(10))
                 .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
 
         }
+
 
         private void CommitRemovingContactFromGroup()
         {
@@ -280,8 +281,11 @@ namespace WebaddressbookTests
         }
 
         private void SelectGroupFromFilter(string groupName)
+
         {
+            driver.FindElement(By.Name("group")).Click();
             new SelectElement(driver.FindElement(By.Name("group"))).SelectByText(groupName);
+            
         }
         public void CheckContactExist(GroupData group)
         {
