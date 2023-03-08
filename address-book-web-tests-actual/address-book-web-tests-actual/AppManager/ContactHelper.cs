@@ -27,7 +27,7 @@ namespace WebaddressbookTests
         {
             manager.Navigator.OpenHomePage();
             SelectContact(oldData.Id);
-            InitContactModification(0);
+
             FillContactForm(newData);
             SubmitContactModification();
             manager.Navigator.OpenHomePage();
@@ -38,7 +38,6 @@ namespace WebaddressbookTests
             manager.Navigator.OpenHomePage();
             SelectContact(contact.Id);
             RemoveContact();
-            ApproveContactRemoval();
             manager.Navigator.OpenHomePage();
             return this;
         }
@@ -54,6 +53,7 @@ namespace WebaddressbookTests
             contactCache = null;
             return this;
         }
+
         public ContactHelper SelectContact(String id)
         {
             driver.FindElement(By.XPath("//input[@id='" + id + "']/../.."))
@@ -61,6 +61,15 @@ namespace WebaddressbookTests
                  .FindElement(By.TagName("a")).Click();
             return this;
         }
+        public ContactHelper SelectContact(int index)
+        {
+            driver.FindElements(By.Name("entry"))[index]
+               .FindElements(By.TagName("td"))[7]
+               .FindElement(By.TagName("a")).Click();
+            return this;
+        }
+
+
         public ContactHelper InitContactCreation()
         {
             driver.FindElement(By.LinkText("add new")).Click();
@@ -101,10 +110,8 @@ namespace WebaddressbookTests
         }
         public void InitContactModification(int index)
         {
-            driver.FindElements(By.Name("entry"))[index]
-                .FindElements(By.TagName("td"))[7]
-                .FindElement(By.TagName("a")).Click();
-;
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + (index + 1) + "]/td[8]/a/img")).Click();
+            
         }
         public void CreateContactIfNotAny(ContactData oldContact)
         {
