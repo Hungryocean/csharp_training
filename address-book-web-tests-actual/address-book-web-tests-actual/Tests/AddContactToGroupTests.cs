@@ -35,10 +35,13 @@ namespace WebaddressbookTests
         [Test]
         public void TestAddingContactToGroup()
         {
+
+
             GroupData group = GroupData.GetAll()[0];
-            app.Contacts.CheckContactExist(group);
+            //app.Contacts.CheckContactExist(group);
             List<ContactData> oldList = group.GetContacts();
             ContactData contact = ContactData.GetAll().Except(oldList).First();
+
 
             app.Contacts.AddContactToGroup(contact, group);
 

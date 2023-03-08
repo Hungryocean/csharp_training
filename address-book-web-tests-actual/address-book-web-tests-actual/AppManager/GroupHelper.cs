@@ -107,6 +107,7 @@ namespace WebaddressbookTests
 
         public bool IsGroupCreated()
         {
+            manager.Navigator.GoToGroupsPage();
             return IsElementPresent(By.XPath("(//input[@name='selected[]'])"));
         }
 
