@@ -44,7 +44,7 @@ namespace WebaddressbookTests
             {
                 return true;
             }
-            return Lastname == other.Lastname && Firstname == other.Firstname;
+            return Lastname == other.Lastname && Firstname == other.Firstname && Id == other.Id;
         }
 
         public override int GetHashCode()
