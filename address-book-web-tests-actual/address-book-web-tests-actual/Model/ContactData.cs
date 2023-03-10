@@ -27,6 +27,7 @@ namespace WebaddressbookTests
         {
             Firstname = firstname;
             Lastname = lastname;
+
         }
 
         public ContactData(string text)
@@ -53,28 +54,43 @@ namespace WebaddressbookTests
         }
         public override string ToString()
         {
-            return Firstname + " " + Lastname;
+            return Id + " " + Firstname + " " + Lastname;
 
         }
         public int CompareTo(ContactData other)
         {
 
-            if (Object.ReferenceEquals(other, null))
-            {
-                return 1;
-            }
 
-            int result = Lastname.CompareTo(other.Lastname);
+            //if (Object.ReferenceEquals(other, null))
+            //{
+            //    return 1;
+            //}
+            //return Id.CompareTo(other.Id);
+
+            //if (Object.ReferenceEquals(other, null))
+            //{
+            //    return 1;
+            //}
+
+            int result = Id.CompareTo(other.Id);
+            int result1 = Firstname.CompareTo(other.Firstname);
             if (result != 0)
             {
                 return result;
             }
-            else
+            else if (result1 != 0)
             {
-                return Firstname.CompareTo(other.Firstname);
+                return result1;
             }
 
+            else
+            {
+                return Lastname.CompareTo(other.Lastname);
+            }
+
+
         }
+
 
         [Column(Name = "firstname"), NotNull]
         public string Firstname { get; set; }
